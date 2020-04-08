@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspur.dao.IInfoDataDao">
+
+
+
+    <select id="findAll" resultType="com.inspur.domain.InfoData">
+        select * from I_PMS_RECEIPT_INFO
+    </select>
+    <delete id="deleteByRECEIPT_ID" parameterType="String">
+        DELETE I_PMS_RECEIPT_INFO WHERE RECEIPT_ID = #{RECEIPT_ID}
+    </delete>
+    <delete id="deleteByINT_ID" parameterType="Integer">
+        DELETE from I_PMS_RECEIPT_INFO WHERE INT_ID = #{INT_ID}
+    </delete>
+
+    <update id="mergeInto" parameterType="com.inspur.domain.InfoData">
+<!--        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >-->
+<!--            select nextval('SEQ_B');-->
+<!--        </selectKey>-->
+        merger into I_PMS_RECEIPT_INFO t1
+        using (select #{RECEIPT_ID} RECEIPT_ID from dual) t2
+        on (t1.RECEIPT_ID=t2.RECEIPT_ID)
+        when matched then
+        update set
+        <set>
+        t1.CITY_NAME=#{CITY_NAME},
+        t1.COUNTY_NAME=#{COUNTY_NAME},
+        t1.SITE_NAME=#{SITE_NAME},
+        t1.SITE_NO=#{SITE_NO},
+        t1.METER_NUM=#{METER_NUM},
+        t1.MONTH_ID=#{MONTH_ID},
+        t1.READING_START=#{READING_START},
+        t1.READING_END=#{READING_END},
+        t1.MONTHLY_POWER=#{MONTHLY_POWER},
+        t1.READING_START_TIME=#{READING_START_TIME},
+        t1.READING_END_TIME=#{READING_END_TIME},
+        t1.AVG_POWER=#{AVG_POWER},
+        t1.CONTRACT_NO=#{CONTRACT_NO},
+        t1.ELEC_PRICE=#{ELEC_PRICE},
+        t1.ELEC_AMT=#{ELEC_AMT},
+        t1.AVG_AMT=#{AVG_AMT},
+        <if test="ATTACHMENT_ID != null and ATTACHMENT_ID !=''">
+                t1.ATTACHMENT_ID=#{ATTACHMENT_ID, jdbcType=NUMERIC},
+        </if>
+        <if test="ATTACHMENT_ID_RECEIPT != null and ATTACHMENT_ID_RECEIPT !=''">
+            t1.ATTACHMENT_ID_RECEIPT=#{ATTACHMENT_ID_RECEIPT},
+        </if>
+        t1.ELEC_LOSE=#{ELEC_LOSE},
+        t1.ELEC_TOTAL=#{ELEC_TOTAL},
+        <if test="SETTLE_POWER != null and SETTLE_POWER !=''">
+            t1.SETTLE_POWER=#{SETTLE_POWER},
+        </if>
+        t1.PROVINCE=#{PROVINCE},
+        t1.OWNER_CUST_CODE=#{OWNER_CUST_CODE},
+        t1.INT_ID=#{INT_ID},
+        t1.CREATE_USER=#{CREATE_USER},
+        t1.CREATE_TIME=#{CREATE_TIME},
+        t1.UPDATE_USER=#{UPDATE_USER},
+        <if test="UPDATE_TME != null">
+            t1.UPDATE_TME=#{UPDATE_TME},
+        </if>
+        </set>
+        where
+        t1.RECEIPT_ID=#{RECEIPT_ID}
+        when not matched then insert
+        (
+        t1.CITY_NAME,
+        t1.COUNTY_NAME,
+        t1.SITE_NAME,
+        t1.SITE_NO,
+        t1.METER_NUM,
+        t1.MONTH_ID,
+        t1.READING_START,
+        t1.READING_END,
+        t1.MONTHLY_POWER,
+        t1.READING_START_TIME,
+        t1.READING_END_TIME,
+        t1.AVG_POWER,
+        t1.CONTRACT_NO,
+        t1.ELEC_PRICE,
+        t1.ELEC_AMT,
+        t1.AVG_AMT,
+            <if test="ATTACHMENT_ID != null and ATTACHMENT_ID !=''">
+        t1.ATTACHMENT_ID,
+            </if>
+        t1.ATTACHMENT_ID_RECEIPT,
+        t1.ELEC_LOSE,
+        t1.ELEC_TOTAL,
+        t1.RECEIPT_ID,
+        t1.SETTLE_POWER,
+        t1.PROVINCE,
+        t1.OWNER_CUST_CODE,
+        t1.INT_ID,
+        t1.CREATE_USER,
+        t1.CREATE_TIME,
+        t1.UPDATE_USER,
+        t1.UPDATE_TME
+        )
+        values
+        (
+        #{CITY_NAME},
+        #{COUNTY_NAME},
+        #{SITE_NAME},
+        #{SITE_NO},
+        #{METER_NUM},
+        #{MONTH_ID},
+        #{READING_START},
+        #{READING_END},
+        #{MONTHLY_POWER},
+        #{READING_START_TIME},
+        #{READING_END_TIME},
+        #{AVG_POWER},
+        #{CONTRACT_NO},
+        #{ELEC_PRICE},
+        #{ELEC_AMT},
+        #{AVG_AMT},
+        #{ATTACHMENT_ID},
+        #{ATTACHMENT_ID_RECEIPT},
+        #{ELEC_LOSE},
+        #{ELEC_TOTAL},
+        #{RECEIPT_ID},
+        #{SETTLE_POWER},
+        #{PROVINCE},
+        #{OWNER_CUST_CODE},
+        SEQ_B.NEXTVAL,
+        #{CREATE_USER},
+        #{CREATE_TIME},
+        #{UPDATE_USER},
+        #{UPDATE_TME}
+        )
+    </update>
+</mapper>
