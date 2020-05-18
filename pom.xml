@@ -123,7 +123,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <!--此处修改为你的应用入口类全路径-->
-                            <mainClass>com.inspur.ZipCsv</mainClass>
+                            <mainClass>com.inspur.ZipCsv_Date</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

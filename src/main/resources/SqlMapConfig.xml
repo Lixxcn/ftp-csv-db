@@ -20,6 +20,10 @@
 <!--                <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521/orcl.home.langchao.com"/>-->
 <!--                <property name="username" value="admin"/>-->
 <!--                <property name="password" value="admin"/>-->
+<!--                <property name="driver" value="oracle.jdbc.OracleDriver"/>-->
+<!--                <property name="url" value="jdbc:oracle:thin:@192.168.22.252:1521/zndfdb"/>-->
+<!--                <property name="username" value="zndf"/>-->
+<!--                <property name="password" value="zndf#123!"/>-->
                 <property name="driver" value="oracle.jdbc.OracleDriver"/>
                 <property name="url" value="jdbc:oracle:thin:@192.168.22.252:1521/zndfdb"/>
                 <property name="username" value="zndf"/>

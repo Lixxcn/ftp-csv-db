@@ -2,10 +2,10 @@ package com.inspur;
 
 
 import com.inspur.dao.IInfoDataDao;
-import com.inspur.domain.*;
-import com.inspur.util.SFTP;
+import com.inspur.domain.AttaData;
+import com.inspur.domain.InfoData;
+import com.inspur.domain.ReadAttaData;
 import com.inspur.util.SftpUploadTest;
-import com.jcraft.jsch.ChannelSftp;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
