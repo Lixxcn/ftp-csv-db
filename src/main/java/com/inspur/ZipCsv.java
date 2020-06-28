@@ -395,7 +395,7 @@ public class ZipCsv {
                     ")");
             ctlSql.append("(ATTACHMENT_ID,ATTACHMENT_REAL_NAME,ATTACHMENT_SAVE_NAME,ATTACHMENT_PATH,FILE_SIZE," +
                     "CREATE_USER,CREATE_TIME \"to_date(:CREATE_TIME,'yyyy-mm-dd')\",UPDATE_USER,UPDATE_TME \"to_date(:UPDATE_TME,'yyyy-mm-dd hh24:mi:ss')\"" +
-                    ",INT_ID \"SEQ_C.NEXTVAL\")");
+                    ",INT_ID \"seq_t_sys_attachment.NEXTVAL\")");//SEQ_C更换为新序列的值 seq_t_sys_attachment 2020年5月27日11:26:50
             sbValues.append(attaData.getATTACHMENT_ID()).append(separator);
             sbValues.append(attaData.getATTACHMENT_REAL_NAME()).append(separator);
             sbValues.append(attaData.getATTACHMENT_SAVE_NAME()).append(separator);
@@ -465,7 +465,7 @@ public class ZipCsv {
     static void init() throws Exception {
         Properties properties = new Properties();
 //        BufferedReader bufferedReader = new BufferedReader(new FileReader("E:\\IDE\\IDEA\\sftpzipcxv\\src\\main\\resources\\config.properties"));
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("/app/program/conf/config.properties"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("/app/program_appuser/conf/config.properties"));
         properties.load(bufferedReader);
         localPath = properties.getProperty("localPath");
         driver = properties.getProperty("driver");
